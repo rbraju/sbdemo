@@ -2,17 +2,17 @@ package com.springboot.sbdemo.dto;
 
 public class DefaultResponse {
 
-    private boolean success;
+    private String status;
 
     private String message;
 
-    public DefaultResponse(boolean success, String message) {
-        this.success = success;
+    public DefaultResponse(String status, String message) {
+        this.status = status;
         this.message = message;
     }
 
-    public boolean getSuccess() {
-        return success;
+    public String getStatus() {
+        return status;
     }
 
     public String getMessage() {

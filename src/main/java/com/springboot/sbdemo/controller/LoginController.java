@@ -20,19 +20,19 @@ public class LoginController {
 
     @GetMapping("/login")
     public DefaultResponse login(@RequestParam String username, String password) {
-        boolean isValidLogin = isValidLogin(username, password);
-        String message = isValidLogin ? "Login succeeded.." : "Invalid login";
-        return new DefaultResponse(isValidLogin, message);
+        return validate(username, password);
     }
 
     @PostMapping(path = "/login", consumes = "application/json", produces = "application/json")
     public DefaultResponse login(@RequestBody Login login) {
-        boolean isValidLogin = isValidLogin(login.getUsername(), login.getPassword());
-        String message = isValidLogin ? "Login succeeded.." : "Invalid login";
-        return new DefaultResponse(isValidLogin, message);
+        return validate(login.getUsername(), login.getPassword());
     }
 
-    private boolean isValidLogin(String username, String password) {
-        return username.equals("admin") && password.equals("admin");
+    private DefaultResponse validate(String username, String password) {
+        boolean isValid = username.equals("admin") && password.equals("admin");
+
+        String status = isValid ? "success" : "error";
+        String message = isValid ? "Login succeeded" : "Invalid Login. Please try again!";
+        return new DefaultResponse(status, message);
     }
 }
