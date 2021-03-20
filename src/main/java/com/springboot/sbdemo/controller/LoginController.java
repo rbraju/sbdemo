@@ -33,6 +33,6 @@ public class LoginController {
     }
 
     private boolean isValidLogin(String username, String password) {
-        return username.equals("admin") && password.equals("admin");
+        return username.equals("admin") && password.equals("password");
     }
 }
